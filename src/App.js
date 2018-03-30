@@ -52,7 +52,8 @@ const ContentPicture = styled.img`
   height: 70%;
   width: 100%;
   border-radius: 5px;
-  background-color: silver;
+  border: solid 1px #999;
+  background-color: lightgrey;
 `;
 
 const ContentHeading = styled.div`

@@ -13,10 +13,10 @@ const SocialCard = styled.div`
 `;
 
 const ProfilePicture = styled.img`
-  padding: 15px;
+  margin: 15px;
   height: 40px;
   border: solid 2px lightblue;
-  border-radius: 50%;
+  border-radius: 5px 20px 5px;
 `;
 
 const Username = styled.h4`

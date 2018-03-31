@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import ProfilePicture from "./ProfilePicture";
 
+import ProfilePicture from "./ProfilePicture";
 import logo from "./logo.svg";
 
 const middleDotUnicode = "\u00B7";
@@ -82,40 +82,71 @@ const Handle = styled.h6`
   color: silver;
 `;
 
+const ContentTitle = styled.h4`
+  padding-left: 5px;
+  margin: 0;
+`;
+
+const ContentDescription = styled.h6`
+  padding-left: 5px;
+  margin: 0;
+  line-height: 1.2;
+`;
+const ActionButton = styled.input`
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0.5rem 1em;
+  margin: 0 1em;
+  background: lightgray;
+  color: black;
+  border: solid 2px #999;
+`;
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "Lewigi",
+      newUsername: "",
       handle: "@Lewigi",
       date: "Apr 2018",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
       contenttitle: "Lorem Ipsum"
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  handleChange(e) {
+    this.setState({ newUsername: e.target.value });
+  }
+
+  handleClick() {
+    this.setState({ username: this.state.newUsername });
+  }
+
   render() {
     return (
-      <SocialCard>
-        <ProfilePicture />
-        <Username>{this.state.username}</Username>
-        <Handle>
-          {this.state.handle + " " + middleDotUnicode + " " + this.state.date}
-        </Handle>
-        <UserDescription>{this.state.description}</UserDescription>
-        <Content>
-          <ContentPicture src={logo} alt="content" />
-          <ContentHeading>
-            <h4 Style="padding-left: 5px; margin: 0">
-              {this.state.contenttitle}
-            </h4>
-            <h6 Style="padding-left: 5px; margin: 0; line-height: 1.2">
-              {this.state.description}
-            </h6>
-          </ContentHeading>
-        </Content>
-        <Interactions href="#">Comment | Like | Share</Interactions>
-      </SocialCard>
+      <div>
+        <SocialCard>
+          <ProfilePicture />
+          <Username>{this.state.username}</Username>
+          <Handle>
+            {this.state.handle + " " + middleDotUnicode + " " + this.state.date}
+          </Handle>
+          <UserDescription>{this.state.description}</UserDescription>
+          <Content>
+            <ContentPicture src={logo} alt="content" />
+            <ContentHeading>
+              <ContentTitle>{this.state.contenttitle}</ContentTitle>
+              <ContentDescription>{this.state.description}</ContentDescription>
+            </ContentHeading>
+          </Content>
+          <Interactions href="#">Comment | Like | Share</Interactions>
+        </SocialCard>
+        <input placeholder="New Username" onChange={this.handleChange} />
+        <ActionButton type="button" onClick={this.handleClick} value="Submit" />
+      </div>
     );
   }
 }

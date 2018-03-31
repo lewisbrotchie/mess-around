@@ -106,26 +106,35 @@ class App extends Component {
     super(props);
     this.state = {
       username: "Lewigi",
-      newUsername: "",
       handle: "@Lewigi",
       date: "Apr 2018",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      contenttitle: "Lorem Ipsum"
+      contenttitle: "Lorem Ipsum",
+      imageUrl: "",
+      UrlInputted: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeURL = this.handleChangeURL.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ newUsername: e.target.value });
+    this.setState({
+      username: e.target.value
+    });
+  }
+
+  handleChangeURL(e) {
+    this.setState({ imageUrl: e.target.value });
   }
 
   handleClick() {
-    this.setState({ username: this.state.newUsername });
+    this.setState({ UrlInputted: true });
   }
 
   render() {
+    const UrlInputted = this.state.UrlInputted;
     return (
       <div>
         <SocialCard>
@@ -136,7 +145,11 @@ class App extends Component {
           </Handle>
           <UserDescription>{this.state.description}</UserDescription>
           <Content>
-            <ContentPicture src={logo} alt="content" />
+            {UrlInputted ? (
+              <ContentPicture src={this.state.imageUrl} alt="content" />
+            ) : (
+              <ContentPicture src={logo} alt="content" />
+            )}
             <ContentHeading>
               <ContentTitle>{this.state.contenttitle}</ContentTitle>
               <ContentDescription>{this.state.description}</ContentDescription>
@@ -144,8 +157,22 @@ class App extends Component {
           </Content>
           <Interactions href="#">Comment | Like | Share</Interactions>
         </SocialCard>
-        <input placeholder="New Username" onChange={this.handleChange} />
-        <ActionButton type="button" onClick={this.handleClick} value="Submit" />
+        <div>
+          <input placeholder="New Username" onChange={this.handleChange} />
+        </div>
+        <br /> <br />
+        <div>
+          <input
+            type="text"
+            placeholder="New Image URL"
+            onChange={this.handleChangeURL}
+          />
+          <ActionButton
+            type="button"
+            onClick={this.handleClick}
+            value="Submit"
+          />
+        </div>
       </div>
     );
   }

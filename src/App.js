@@ -126,11 +126,27 @@ class App extends Component {
   }
 
   handleChangeURL(e) {
-    this.setState({ imageUrl: e.target.value });
+    this.setState({ imageUrl: e.target.value, UrlInputted: false });
   }
 
   handleClick() {
-    this.setState({ UrlInputted: true });
+    //Regex to validate url
+    const valid = this.state.imageUrl.match(
+      "^(https?:\\/\\/)?" +
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
+        "((\\d{1,3}\\.){3}\\d{1,3}))" +
+        "(\\:\\d+)?" +
+        "(\\/[-a-z\\d%@_.~+&:]*)*" +
+        "(\\?[;&a-z\\d%@_.,~+&:=-]*)?" +
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // protocol // domain name and extension // OR ip (v4) address // port // path // query string
+    if (valid == null) {
+      this.setState({ UrlInputted: false });
+      alert("Please enter a valid URL.");
+    } else {
+      this.setState({ UrlInputted: true });
+    }
   }
 
   render() {

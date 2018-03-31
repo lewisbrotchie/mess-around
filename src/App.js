@@ -5,7 +5,7 @@ import "./App.css";
 
 const middleDotUnicode = "\u00B7";
 
-const Interactions = styled.div`
+const Interactions = styled.a`
   position: absolute;
   bottom: 0;
   margin-left: 100px;
@@ -38,7 +38,6 @@ const Content = styled.div`
 const SocialCard = styled.div`
   height: 320px;
   width: 550px;
-
   border: solid 1px #999;
   border-radius: 10px;
   display: flex;
@@ -68,8 +67,9 @@ const ContentHeading = styled.div`
 const ProfilePicture = styled.img`
   margin: 15px;
   height: 40px;
-  border: solid 2px lightblue;
+  border: solid 1px #999;
   border-radius: 5px 20px 5px;
+  background-color: lightgrey;
 `;
 
 const Username = styled.h4`
@@ -106,7 +106,9 @@ class App extends Component {
             </h6>
           </ContentHeading>
         </Content>
-        <Interactions>Comment | Like | Share</Interactions>
+        <Interactions href="http://www.google.com">
+          Comment | Like | Share
+        </Interactions>
       </SocialCard>
     );
   }

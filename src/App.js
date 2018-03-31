@@ -45,6 +45,7 @@ const SocialCard = styled.div`
   font-family: sans-serif;
   line-height: 24px;
   text-justify: inter-word;
+  margin: 10px;
 `;
 
 const ContentPicture = styled.img`

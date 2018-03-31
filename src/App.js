@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import ProfilePicture from "./ProfilePicture";
+
 import logo from "./logo.svg";
-import "./App.css";
 
 const middleDotUnicode = "\u00B7";
 
@@ -22,6 +23,7 @@ const UserDescription = styled.div`
   width: 400px;
   height: 13%;
   font-size: 9pt;
+  line-height: 1.5;
 `;
 
 const Content = styled.div`
@@ -50,7 +52,7 @@ const SocialCard = styled.div`
 
 const ContentPicture = styled.img`
   height: 70%;
-  width: 100%;
+  width: 99.5%;
   border-radius: 5px;
   border: solid 1px #999;
   background-color: lightgrey;
@@ -63,14 +65,6 @@ const ContentHeading = styled.div`
   width: 100%;
   height: 27%;
   border-radius: 5px;
-`;
-
-const ProfilePicture = styled.img`
-  margin: 15px;
-  height: 40px;
-  border: solid 1px #999;
-  border-radius: 5px 20px 5px;
-  background-color: lightgrey;
 `;
 
 const Username = styled.h4`
@@ -89,27 +83,38 @@ const Handle = styled.h6`
 `;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "Lewigi",
+      handle: "@Lewigi",
+      date: "Apr 2018",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      contenttitle: "Lorem Ipsum"
+    };
+  }
   render() {
     return (
       <SocialCard>
-        <ProfilePicture src={logo} alt="logo" />
-        <Username>The Practical Dev</Username>
-        <Handle>@ThePracticalDev {middleDotUnicode} Sep 10</Handle>
-        <UserDescription>User's description goes here...</UserDescription>
+        <ProfilePicture />
+        <Username>{this.state.username}</Username>
+        <Handle>
+          {this.state.handle + " " + middleDotUnicode + " " + this.state.date}
+        </Handle>
+        <UserDescription>{this.state.description}</UserDescription>
         <Content>
           <ContentPicture src={logo} alt="content" />
           <ContentHeading>
             <h4 Style="padding-left: 5px; margin: 0">
-              Content Title Goes Here..
+              {this.state.contenttitle}
             </h4>
-            <h6 Style="padding-left: 5px; margin: 0">
-              Content description goes here...
+            <h6 Style="padding-left: 5px; margin: 0; line-height: 1.2">
+              {this.state.description}
             </h6>
           </ContentHeading>
         </Content>
-        <Interactions href="http://www.google.com">
-          Comment | Like | Share
-        </Interactions>
+        <Interactions href="#">Comment | Like | Share</Interactions>
       </SocialCard>
     );
   }
